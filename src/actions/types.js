@@ -1,3 +1,3 @@
 export default {
-    DEFAULT_STATE: 'default_state'
+    CHANGE_AUTH: 'change_auth'
 };
