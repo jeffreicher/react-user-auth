@@ -20,7 +20,7 @@ class Nav extends Component {
                 <Link style={linkStyle} className="nav-link" to="/about-us">About Us</Link>
                 <Link style={linkStyle} className="nav-link" to="/secret">Secret Docs</Link>
                 <Link style={linkStyle} className="nav-link" to="/operatives-list">Operative Lists</Link>
-                {this.renderButton()}       
+                <Link style={linkStyle} className="nav-link" to="/sign-up">Sign Up</Link>       
             </nav>
         );
     };
