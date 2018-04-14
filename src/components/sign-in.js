@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import Field from './field';
 import { connect } from 'react-redux';
-import { formError, signUp } from '../actions';
+import { formError, signIn } from '../actions';
 
-class SignUp extends Component {
-    handleSignUp(event) {
+class SignIn extends Component {
+    handleSignIn(event) {
         event.preventDefault();
-        const { username, email, password, confirmPassword } = this.props.values;
+        const { email, password } = this.props.values;
         const errors = [];
-
-        if(!username) {
-            errors.push('Please entire a username');
-        };
 
         if(!email) {
             errors.push('Please entire an email');
@@ -21,26 +17,16 @@ class SignUp extends Component {
             errors.push('Please entire a password');
         };
 
-        if(password !== confirmPassword) {
-            errors.push('Passwords do not match');
-        };
-
         this.props.formError(errors);
 
         if(errors.length === 0) {
-            this.props.signUp({ email, password });
+            this.props.signIn({ email, password });
         }; 
     };
 
     render() {
 
         const inputs = [
-            {
-                label: 'Username',
-                type: 'Text',
-                placeholder: 'Choose a username',
-                name: 'username'
-            },
             {
                 label: 'Email Address',
                 type: 'Text',
@@ -50,15 +36,9 @@ class SignUp extends Component {
             {
                 label: 'Password',
                 type: 'password',
-                placeholder: 'Enter a password',
+                placeholder: 'Enter your password',
                 name: 'password'
-            },
-            {
-                label: 'Password',
-                type: 'password',
-                placeholder: 'Confirm your password',
-                name: 'confirmPassword'
-            },
+            }
         ];
 
         const { values, errors } = this.props;
@@ -70,14 +50,14 @@ class SignUp extends Component {
 
         return (
            <div>
-                <h1 className="text-center mb-3">SIGN UP</h1>
+                <h1 className="text-center mb-3">SIGN IN</h1>
                 <div className="row justify-content-center">
                     <div className="card col-8 bg-primary">
                         <div className="card-body">
-                            <form onSubmit={this.handleSignUp.bind(this)}>
+                            <form onSubmit={this.handleSignIn.bind(this)}>
                                 {fields}
                                 <div className="row">
-                                    <button className="btn btn-light">Sign-Up</button>
+                                    <button className="btn btn-light">Sign-In</button>
                                 </div>
                             </form>
                         </div>                   
@@ -95,4 +75,4 @@ function mapStateToProps(state) {
     };
 };
 
-export default connect(mapStateToProps, { formError, signUp })(SignUp);
+export default connect(mapStateToProps, { formError, signIn })(SignIn);

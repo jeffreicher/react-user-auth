@@ -6,8 +6,7 @@ class Field extends Component {
 
     render() {
         
-        const { label, type, placeholder, name, values, handleInputChange } = this.props;
-        const value = values[name] || '';
+        const { label, type, placeholder, name, value, handleInputChange } = this.props;
 
         return (
             <div>
@@ -20,10 +19,4 @@ class Field extends Component {
     };
 };
 
-function mapStateToProps(state) {
-    return {
-        values: state.form.values        
-    };
-};
-
-export default connect(mapStateToProps, { handleInputChange })(Field);
+export default connect(null, { handleInputChange })(Field);
